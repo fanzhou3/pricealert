@@ -4,7 +4,8 @@ url = "https://www.johnlewis.com/apple-iphone-11-ios-6-1-inch-4g-lte-sim-free-12
 tag_name = "p"
 query = {"class": "price price--large"}
 
-item = Item(url, tag_name, query)
-print(item.load_price())
+iphone = Item(url, tag_name, query)
+iphone.save_to_mongo()
 
+#
 

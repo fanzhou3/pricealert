@@ -1,6 +1,10 @@
-from flask import Flask
+from model.item import Item
 
-app = Flask(__name__)
+url = "https://www.johnlewis.com/apple-iphone-11-ios-6-1-inch-4g-lte-sim-free-128gb/p4529033"
+tag_name = "p"
+query = {"class": "price price--large"}
 
-if __name__ == '__main__':
-    app.run()
+item = Item(url, tag_name, query)
+print(item.load_price())
+
+

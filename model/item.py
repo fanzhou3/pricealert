@@ -1,12 +1,13 @@
-from typing import Dict
+from typing import Dict, List
 import re
 import requests
 import uuid
 from bs4 import BeautifulSoup
 from common.database import Database
+from model.model import Model
 
 
-class Item:
+class Item(Model):
     def __init__(self, url: str, tag_name: str, query: Dict, _id: str = None):
         self.url = url
         self.tag_name = tag_name
@@ -43,3 +44,13 @@ class Item:
 
     def save_to_mongo(self):
         Database.insert(self.collection, self.json())
+
+    @classmethod
+    def all(cls) -> List:
+        items_from_db = Database.find("items", {})
+        return [cls(**item) for item in items_from_db]  # This **item is important
+
+    @classmethod
+    def get_by_id(cls, _id):
+        item_json = Database.find_one("item", {"_id": _id})
+        return cls(**item_json)

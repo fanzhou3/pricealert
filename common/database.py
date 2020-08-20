@@ -7,5 +7,13 @@ class Database:
     DATABASE = pymongo.MongoClient(URL).get_database()
 
     @staticmethod
-    def insert( collection: str, data: Dict):
+    def insert(collection: str, data: Dict):
         Database.DATABASE[collection].insert(data)
+
+    @staticmethod
+    def find(collection: str, query: Dict) -> pymongo.cursor:
+        return Database.DATABASE[collection].find(query)
+
+    @staticmethod
+    def find_one(collection: str, query: Dict) -> Dict:
+        return Database.DATABASE[collection].find_one(query)

@@ -1,15 +1,12 @@
-from model.item import Item
-from model.alert import Alert
+from flask import Flask, render_template
 
-url = "https://www.johnlewis.com/apple-iphone-11-ios-6-1-inch-4g-lte-sim-free-128gb/p4529033"
-tag_name = "p"
-query = {"class": "price price--large"}
+app = Flask(__name__)
 
-iphone = Item(url, tag_name, query)
-iphone.save_to_mongo()
 
-#
-items_load = Item.all()
+@app.route('/')
+def new_item():
+    return render_template('new_item.html')
 
-alert = Alert("",800)
-alert.save_to_mongo()
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -8,12 +8,15 @@ from model.model import Model
 
 
 class Item(Model):
+
+    collection = "items"
+
     def __init__(self, url: str, tag_name: str, query: Dict, _id: str = None):
+        super().__init__()
         self.url = url
         self.tag_name = tag_name
         self.query = query
         self.price = None
-        self.collection = "items"
         self._id = _id or uuid.uuid4().hex
 
     def __repr__(self):
@@ -42,15 +45,16 @@ class Item(Model):
             "query": self.query
         }
 
-    def save_to_mongo(self):
-        Database.insert(self.collection, self.json())
+#    def save_to_mongo(self):
+#        Database.insert(self.collection, self.json())
 
-    @classmethod
-    def all(cls) -> List:
-        items_from_db = Database.find("items", {})
-        return [cls(**item) for item in items_from_db]  # This **item is important
+#
+#    @classmethod
+#    def all(cls) -> List:
+#        items_from_db = Database.find(cls.collection, {})
+#        return [cls(**item) for item in items_from_db]  # This **item is important
 
-    @classmethod
-    def get_by_id(cls, _id):
-        item_json = Database.find_one("item", {"_id": _id})
-        return cls(**item_json)
+#    @classmethod
+#    def get_by_id(cls, _id: str) -> "Item":
+#        item_json = Database.find_one("item", {"_id": _id})
+#        return cls(**item_json)

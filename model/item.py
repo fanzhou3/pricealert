@@ -45,6 +45,9 @@ class Item(Model):
             "query": self.query
         }
 
+    def get_item_id(self) -> str:
+        return self._id
+
 #    def save_to_mongo(self):
 #        Database.insert(self.collection, self.json())
 

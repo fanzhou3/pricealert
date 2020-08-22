@@ -13,11 +13,17 @@ app.config.update(
 )
 
 
-#@app.before_first_request
-#def init_db():
+@app.route('/')
+def home():
+    return 'Hello World!'
+
+
+# @app.before_first_request
+# def init_db():
 #    Database.initialize()
 
 # app.register_blueprint(item_blueprint, url_prefix="/items")
+
 app.register_blueprint(alert_blueprint, url_prefix="/alerts")
 
 if __name__ == '__main__':

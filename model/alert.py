@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 @dataclass(eq=False)  # can delete and change to the normal format
 class Alert(Model):
 
-    # collection = "alerts"
+#    collection = "alerts"
     collection: str = field(init=False, default="alerts")
     name: str
     item_id: str

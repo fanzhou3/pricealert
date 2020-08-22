@@ -10,7 +10,7 @@ flask = "*"
 beautifulsoup4 = "*"
 requests = "*"
 pymongo = "*"
-dataclasses = "*"
+dataclasses = "0.6"
 uWSGI = "*"
 
 [requires]

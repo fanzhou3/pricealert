@@ -3,18 +3,29 @@ from model.item import Item
 import uuid
 from common.database import Database
 from model.model import Model
+from dataclasses import dataclass, field
 
 
+@dataclass(eq=False)  # can delete and change to the normal format
 class Alert(Model):
 
-    collection = "alerts"
+    # collection = "alerts"
+    collection: str = field(init=False, default="alerts")
+    name: str
+    item_id: str
+    price_limit: float
+    _id: str = field(default_factory=lambda: uuid.uuid4().hex)
 
-    def __init__(self, item_id: str, price_limit: float, _id: str = None):
-        super().__init__()
-        self.item_id = item_id
-        self.item = Item.get_by_id(item_id)
-        self.price_limit = price_limit
-        self._id = _id or uuid.uuid4().hex
+#    def __init__(self, name: str, item_id: str, price_limit: float, _id: str = None):
+#        super().__init__()
+#        self.name = name
+#        self.item_id = item_id
+#        self.item = Item.get_by_id(item_id)
+#        self.price_limit = price_limit
+#        self._id = _id or uuid.uuid4().hex
+
+    def __post_init__(self):
+        self.item = Item.get_by_id(self.item_id)
 
     def json(self) -> Dict:
         return {

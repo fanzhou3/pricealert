@@ -10,7 +10,6 @@ flask = "*"
 beautifulsoup4 = "*"
 requests = "*"
 pymongo = "*"
-dataclasses = "0.6"
 uWSGI = "*"
 
 [requires]
@@ -18,4 +17,3 @@ python_version = "3.6"
 
 [pipenv]
 allow_prereleases = true
-

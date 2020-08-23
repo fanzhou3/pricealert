@@ -11,6 +11,7 @@ beautifulsoup4 = "*"
 requests = "*"
 pymongo = "*"
 uWSGI = "*"
+passlib = "*"
 
 [requires]
 python_version = "3.6"

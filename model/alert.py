@@ -24,14 +24,15 @@ class Alert(Model):
         self.price_limit = price_limit
         self._id = _id or uuid.uuid4().hex
 
-    def __post_init__(self):
-        self.item = Item.get_by_id(self.item_id)
+#    def __post_init__(self):
+#        self.item = Item.get_by_id(self.item_id)
 
     def json(self) -> Dict:
         return {
             "_id": self._id,
-            "price_limit": self.price_limit,
-            "item_id": self.item_id
+            "name": self.name,
+            "item_id": self.item_id,
+            "price_limit": self.price_limit
         }
 
 #    def save_to_mongo(self):

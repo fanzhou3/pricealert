@@ -16,18 +16,19 @@ class Item(Model):
 #    url: str
 #    tag_name: str
 #    query: Dict
+#    price: float = field(default=None)
 #    _id: str = field(default_factory=lambda: uuid.uuid4().hex)
 
-    def __init__(self, url: str, tag_name: str, query: Dict, _id: str = None):
+    def __init__(self, url: str, tag_name: str, query: Dict, price: float = None, _id: str = None):
         super().__init__()
         self.url = url
         self.tag_name = tag_name
         self.query = query
-        self.price = None
+        self.price = price
         self._id = _id or uuid.uuid4().hex
 
-    def __post_init__(self):
-        self.price = None
+#    def __post_init__(self):
+#        self.price = None
 
     def __repr__(self):
         return f"<Item {self.url}>"
@@ -52,6 +53,7 @@ class Item(Model):
             "_id": self._id,
             "url": self.url,
             "tag_name": self.tag_name,
+            "price": self.price,
             "query": self.query
         }
 

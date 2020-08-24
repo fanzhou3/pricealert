@@ -4,8 +4,9 @@ import os
 
 
 class Database:
-    URL = "mongodb://127.0.0.1:27017/pricealert"
-    DATABASE = pymongo.MongoClient(URL).get_database()
+    URL = "mongodb://dezhong:dezhong3@ds133922.mlab.com:33922/heroku_vcf86tkr"
+    #  URL =  "mongodb://127.0.0.1:27017/pricealert"
+    DATABASE = pymongo.MongoClient(URL).get_default_database()    # get_database()
 
     @staticmethod
     def insert(collection: str, data: Dict):

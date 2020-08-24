@@ -1,5 +1,6 @@
 from flask import Blueprint, request, session, url_for, render_template, redirect
-from model.user import User, UserErrors
+from model.user.user import User
+from model.user.errors import UserError
 
 
 user_blueprint = Blueprint('users', __name__)
@@ -15,7 +16,7 @@ def login_user():
             if User.is_login_valid(email, password):
                 session['email'] = email
                 return redirect(url_for('alerts.index'))
-        except UserErrors.UserError as e:
+        except UserError as e:  # UserErrors.UserError
             return e.message
 
     return render_template("users/login.html")  # Send the user an error if their login was invalid
@@ -31,7 +32,7 @@ def register_user():
             if User.register_user(email, password):
                 session['email'] = email
                 return redirect(url_for('alerts.index'))
-        except UserErrors.UserError as e:
+        except UserError as e:
             return e.message
 
-    return render_template("users/register.html")  # Send the user an error if their login was invalid
+    return render_template("users/register.html")

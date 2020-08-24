@@ -1,11 +1,12 @@
 import uuid
 import re
 from typing import Dict, List
-#from dataclasses import dataclass, field
+# from dataclasses import dataclass, field
 from model.model import Model
+from common.database import Database
 
 
-#@dataclass(eq=False) # can delete and change to the normal format
+# @dataclass(eq=False) # can delete and change to the normal format
 class Store(Model):
 
     collection = "stores"

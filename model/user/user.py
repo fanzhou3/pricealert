@@ -5,7 +5,10 @@ from typing import Dict, List
 from model.model import Model
 from common.database import Database
 from common.utils import Utils
-import model.user.errors as UserErrors
+# import model.user.errors as UserErrors
+# from model.user import UserErrors
+from model.user.errors import UserError, UserNotFoundError, IncorrectPasswordError, InvalidEmailError,\
+    UserAlreadyRegisteredError
 
 
 # @dataclass
@@ -28,40 +31,29 @@ class User(Model):
         try:
             return cls.find_one_by('email', email)
         except TypeError:
-            raise UserErrors.UserNotFoundError('A user with this e-mail was not found.')
+            raise UserNotFoundError('A user with this e-mail was not found.')  # UserErrors.
 
     @classmethod
     def is_login_valid(cls, email: str, password: str) -> bool:
-        """
-        This method verifies that an e-mail/password combo (as sent by the site forms) is valid or not.
-        Checks that the e-mail exists, and that the password associated to that e-mail is correct.
-        :param email: The user's email
-        :param password: The password
-        :return: True if valid, an exception otherwise
-        """
+
         user = cls.find_by_email(email)
 
         if not Utils.check_hashed_password(password, user.password):
             # Tell the user that their password is wrong
-            raise UserErrors.IncorrectPasswordError("Your password was wrong.")
+            raise IncorrectPasswordError("Your password was wrong.")  # UserErrors.
 
         return True
 
     @classmethod
     def register_user(cls, email: str, password: str) -> bool:
-        """
-        This method registers a user using e-mail and password.
-        :param email: user's e-mail (might be invalid)
-        :param password: password
-        :return: True if registered successfully, or False otherwise (exceptions can also be raised)
-        """
+
         if not Utils.email_is_valid(email):
-            raise UserErrors.InvalidEmailError("The e-mail does not have the right format.")
+            raise InvalidEmailError("The e-mail does not have the right format.")  # UserErrors.
 
         try:
             user = cls.find_by_email(email)
-            raise UserErrors.UserAlreadyRegisteredError("The e-mail you used to register already exists.")
-        except UserErrors.UserNotFoundError:
+            raise UserAlreadyRegisteredError("The e-mail you used to register already exists.")  # UserErrors.U
+        except UserNotFoundError:  # UserErrors.U
             User(email, Utils.hash_password(password)).save_to_mongo()
 
         return True

@@ -5,10 +5,10 @@ import uuid
 from bs4 import BeautifulSoup
 from common.database import Database
 from model.model import Model
-#from dataclasses import dataclass, field
+# from dataclasses import dataclass, field
 
 
-#@dataclass(eq=False)  # can delete and change to the normal format
+# @dataclass(eq=False)  # can delete and change to the normal format
 class Item(Model):
 
     collection = "items"

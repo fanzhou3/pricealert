@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from views.items import item_blueprint
 from views.alerts import alert_blueprint
 from views.stores import store_blueprint
@@ -18,7 +18,7 @@ app.config.update(
 
 @app.route('/')
 def home():
-    return 'Hello World!'
+    return render_template('home.html')
 
 
 # @app.before_first_request

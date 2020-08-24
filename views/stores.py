@@ -1,12 +1,13 @@
 import json
 from flask import Blueprint, render_template, request, redirect, url_for
 from model.store import Store
-from model.user.decorators import requires_admin
+from model.user.decorators import requires_admin, requires_login
 
 store_blueprint = Blueprint('stores', __name__)
 
 
 @store_blueprint.route('/')
+@requires_login
 def index():
     stores = Store.all()
     return render_template('stores/store_index.html', stores=stores)

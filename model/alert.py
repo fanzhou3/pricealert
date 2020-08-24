@@ -37,7 +37,7 @@ class Alert(Model):
             "name": self.name,
             "item_id": self.item_id,
             "price_limit": self.price_limit,
-            "user email": self.user_email
+            "user_email": self.user_email
         }
 
 #    def save_to_mongo(self):

@@ -12,7 +12,7 @@ alert_blueprint = Blueprint('alerts', __name__)
 @alert_blueprint.route('/')
 @requires_login
 def index():
-    alerts = Alert.all()
+    alerts = Alert.find_many_by("user_email", session["email"])
     return render_template('alerts/index.html', alerts=alerts)
 
 
@@ -29,7 +29,7 @@ def new_alert():
         item.load_price()
         item.save_to_mongo()
 
-        Alert(alert_name, item.get_item_id(), price_limit).save_to_mongo()
+        Alert(alert_name, item.get_item_id(), price_limit, session["email"]).save_to_mongo()
 
     return render_template('alerts/new_alert.html')
 

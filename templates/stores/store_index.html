@@ -23,7 +23,7 @@
         </div>
         {% endfor %}
     </div>
-    {% if session['email'] == 'westlifesdz@hotmail.com' %}
+    {% if session['email'] == config.ADMIN %}
     <a class="btn btn-primary mt-3" href="{{ url_for('stores.create_store') }}">
         Create new
     </a>

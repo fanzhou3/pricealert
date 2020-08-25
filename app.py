@@ -13,6 +13,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(64)
 app.config.update(
     ADMIN=os.environ.get('ADMIN')
+    # ADMIN = 'westlifesdz@hotmail.com'
 )
 
 

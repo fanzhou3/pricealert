@@ -8,8 +8,11 @@ class Database:
     #  URL =  "mongodb://127.0.0.1:27017/pricealert"
 
     client = pymongo.MongoClient(
-        "mongodb+srv://dezhong:sdz7838303@cluster0.2tfzy.mongodb.net/price_alert?retryWrites=true&w=majority")
-    # db = client.test
+       "mongodb+srv://dezhong:sdz7838303@cluster0.2tfzy.mongodb.net/price_alert?retryWrites=true&w=majority")
+    db = client.test
+
+    # URL = "mongodb://dezhong:dezhong3@ds131340.mlab.com:31340/heroku_15c914n0"
+    # client = pymongo.MongoClient(URL)
 
     DATABASE = client.get_database()    # get_database()
 

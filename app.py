@@ -16,9 +16,9 @@ app.config.update(
 )
 
 
-@app.before_first_request
-def init_db():
-    print(Database.initialize())
+# @app.before_first_request
+# def init_db():
+    # print(Database.initialize())
     # Database.initialize()
 
 

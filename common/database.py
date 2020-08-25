@@ -4,9 +4,14 @@ import os
 
 
 class Database:
-    URL = "mongodb://<heroku_vcf86tkr>:<sdz7838303>@ds133922.mlab.com:33922/heroku_vcf86tkr"
+    #  URL = "mongodb+srv://dezhong:<password>@cluster0.2tfzy.mongodb.net/<dbname>?retryWrites=true&w=majority"
     #  URL =  "mongodb://127.0.0.1:27017/pricealert"
-    DATABASE = pymongo.MongoClient(URL).get_default_database()    # get_database()
+
+    client = pymongo.MongoClient(
+        "mongodb+srv://dezhong:sdz7838303@cluster0.2tfzy.mongodb.net/price_alert?retryWrites=true&w=majority")
+    # db = client.test
+
+    DATABASE = client.get_default_database()    # get_database()
 
     @staticmethod
     def insert(collection: str, data: Dict):
@@ -27,3 +32,7 @@ class Database:
     @staticmethod
     def remove(collection: str, query: Dict) -> Dict:
         return Database.DATABASE[collection].remove(query)
+
+    @staticmethod
+    def initialize():
+        return Database.DATABASE["test"].name

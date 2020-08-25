@@ -16,14 +16,16 @@ app.config.update(
 )
 
 
+@app.before_first_request
+def init_db():
+    print(Database.initialize())
+    # Database.initialize()
+
+
 @app.route('/')
 def home():
     return render_template('home.html')
 
-
-# @app.before_first_request
-# def init_db():
-#    Database.initialize()
 
 # app.register_blueprint(item_blueprint, url_prefix="/items")
 

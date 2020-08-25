@@ -1,3 +1,3 @@
 
 DEBUG = False
-ADMIN = "westlifesdz@hotmail.com"
+ADMIN = 'westlifesdz@hotmail.com'

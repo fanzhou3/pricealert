@@ -11,7 +11,7 @@ class Database:
         "mongodb+srv://dezhong:sdz7838303@cluster0.2tfzy.mongodb.net/price_alert?retryWrites=true&w=majority")
     # db = client.test
 
-    DATABASE = client.get_default_database()    # get_database()
+    DATABASE = client.get_database()    # get_database()
 
     @staticmethod
     def insert(collection: str, data: Dict):

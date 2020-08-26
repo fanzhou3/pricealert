@@ -36,3 +36,9 @@ def register_user():
             return e.message
 
     return render_template("users/register.html")
+
+
+@user_blueprint.route('/logout')
+def logout():
+    session['email'] = None
+    return render_template("home.html")
